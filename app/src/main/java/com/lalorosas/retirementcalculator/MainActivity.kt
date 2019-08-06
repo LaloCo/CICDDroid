@@ -16,7 +16,17 @@ class MainActivity : AppCompatActivity() {
         AppCenter.start(application, "6161a2f1-302f-4a81-b78f-37c0eb4f22f7", Analytics::class.java, Crashes::class.java);
 
         calculateButton.setOnClickListener {
-            Crashes.generateTestCrash()
+            // Crashes.generateTestCrash()
+            val interestRate = interestEditText.text.toString().toFloat()
+            val currentAge = ageEditText.text.toString().toInt()
+            val retirementAge = retirementEditText.text.toString().toInt()
+
+            if (interestRate <= 0) {
+                Analytics.trackEvent("wrong_interest_rate")
+            }
+            if (retirementAge <= currentAge) {
+                Analytics.trackEvent("wrong_age")
+            }
         }
     }
 }
