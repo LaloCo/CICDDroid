@@ -17,15 +17,28 @@ class MainActivity : AppCompatActivity() {
 
         calculateButton.setOnClickListener {
             // Crashes.generateTestCrash()
-            val interestRate = interestEditText.text.toString().toFloat()
-            val currentAge = ageEditText.text.toString().toInt()
-            val retirementAge = retirementEditText.text.toString().toInt()
+            try {
+                val interestRate = interestEditText.text.toString().toFloat()
+                val currentAge = ageEditText.text.toString().toInt()
+                val retirementAge = retirementEditText.text.toString().toInt()
+                val monthly = monthlySavingsEditText.text.toString().toFloat()
+                val current = currentEditText.text.toString().toFloat()
 
-            if (interestRate <= 0) {
-                Analytics.trackEvent("wrong_interest_rate")
-            }
-            if (retirementAge <= currentAge) {
-                Analytics.trackEvent("wrong_age")
+                val properties:HashMap<String, String> = HashMap<String, String>()
+                properties.put("interest_rate", interestRate.toString())
+                properties.put("current_age", currentAge.toString())
+                properties.put("retirement_age", retirementAge.toString())
+                properties.put("monthly_savings", monthly.toString())
+                properties.put("current_savings", current.toString())
+
+                if (interestRate <= 0) {
+                    Analytics.trackEvent("wrong_interest_rate", properties)
+                }
+                if (retirementAge <= currentAge) {
+                    Analytics.trackEvent("wrong_age", properties)
+                }
+            } catch(ex: Exception){
+                Analytics.trackEvent(ex.message)
             }
         }
     }
