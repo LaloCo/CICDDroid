@@ -30,6 +30,7 @@ class RetirementCalcTest {
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Rule
+    @JvmField
     var reportHelper = Factory.getReportHelper()
 
     @Test
