@@ -5,14 +5,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    signingConfigs {
-        release {
-            storeFile file('/Users/eduardorosas/AndroidStudioProjects/RetirementCalculator/retirementkeystore.keystore')
-            storePassword 'YOUR_PASSWORD'
-            keyPassword 'YOUR_PASSWORD'
-            keyAlias = 'retirementkeystore'
-        }
-    }
     compileSdkVersion 29
     buildToolsVersion "29.0.1"
     defaultConfig {
@@ -26,7 +18,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
