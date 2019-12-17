@@ -12,7 +12,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
-        buildConfigField("String", "versionName", "\"${System.env.version}\"")
+        buildConfigField("String", "versionName", "\"${System.env.APPCENTER_BUILD_ID}\"")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
